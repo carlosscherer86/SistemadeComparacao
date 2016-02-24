@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Intent;
 
 import android.content.CursorLoader;
 import android.content.Loader;
@@ -83,10 +84,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mCadastarUsuario = (Button) findViewById(R.id.btCriarConta);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
+            }
+        });
+
+        mCadastarUsuario.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, CadastrarUsuarioActivity.class);
+                startActivity(intent);
+                //finish();
             }
         });
 
@@ -95,10 +106,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private void populateAutoComplete() {
-        //if (!mayRequestContacts()) {
-          //  return;
-        //}
-
         getLoaderManager().initLoader(0, null, this);
     }
 
